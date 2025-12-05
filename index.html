@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js"></script>
-    <script src="api.js"></script>
+    <script src="main.js" type="module"></script>
     <title>Document</title>
   </head>
   <body>
-    <select id="wine-select">
-      <option>Select a wine...</option>
+    <label for="wine-select">Choose a wine: </label>
+    <select id="wine-select" name="wine" required>
+      <option value="default" disabled selected>Select a wine...</option>
     </select>
+    <button id="submit-winetype" type="submit">Get a recipe</button>
   </body>
 </html>
