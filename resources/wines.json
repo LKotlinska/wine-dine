@@ -1,15 +1,12 @@
 {
   "white_wine": [
-      "pinot_blanc",
       "verdicchio",
-      "marsanne",
       "white_burgundy",
       "chardonnay",
       "gruener_veltliner",
       "sauvignon_blanc",
       "albarino",
       "vermentino",
-      "soave",
       "pinot_grigio"
     ],
   "red_wine": [
@@ -18,17 +15,12 @@
       "malbec",
       "zinfandel",
       "sangiovese",
-      "carignan",
-      "carmenere",
-      "cesanese",
       "cabernet_sauvignon",
       "shiraz",
       "merlot"
   ],
   "sparkling_wine": [
-    "cremant",
     "champagne",
-    "prosecco",
     "sparkling_rose"
   ]
 }
