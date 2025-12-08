@@ -9,11 +9,11 @@ export async function getPairedRecipes(wineType) {
   });
 
   const getPairings = async () => {
-    // Get dish examples from wine API
+    // Get dish pairings from wine API
     const response = await fetch(wineAPIBaseUrl + "dishes?" + pairingSearch);
     const pairingData = await response.json();
-    console.log(pairingData);
-    return pairingData["pairings"];
+    // console.log(pairingData);
+    return pairingData;
   };
   const getRecipe = async (query) => {
     const dishSearch = new URLSearchParams({
@@ -31,11 +31,22 @@ export async function getPairedRecipes(wineType) {
 
   const pairings = await getPairings();
   const recipes = [];
-  for (const query of pairings) {
+
+  recipes.push(pairings["text"]);
+
+  for (const query of pairings["pairings"]) {
     // Set timeout cuz stoopid max 5 request/s
     setTimeout(async () => {
-      recipes.push((await getRecipe(query)).results[0]);
+      // Extracting results[0] out of the array which contains recipe info
+      const recipeData = await getRecipe(query);
+      const newRecipe = recipeData?.results?.[0];
+
+      // Making sure the data is not undefined
+      if (newRecipe !== undefined) {
+        recipes.push(newRecipe);
+      } 
     }, 250);
   }
+
   return recipes;
 }
