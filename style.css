@@ -53,3 +53,16 @@ h6 {
 .logo-container img{
     max-height: 10em;
 }
+optgroup {
+  font-style: normal;
+}
+optgroup,
+optgroup option {
+  text-transform: capitalize;
+}
+details{
+  padding: 1em 0;
+}
+summary h4{
+  display: inline;
+}
