@@ -17,14 +17,51 @@
   </head>
   <body>
     <header>
-      <img src="/resources/images/logo.svg" alt="Uncork and Fork logo" />
-      <h1>Uncork & Fork</h1>
-      <h2>Let the Wine Choose Dinner</h2>
+      <a class="logo-container" href="index.html">
+        <img src="/resources/images/logo.svg" alt="Uncork and Fork logo" />
+        <hgroup>
+          <h1>Uncork & Fork</h1>
+          <h2>Let the Wine Choose Dinner</h2>
+        </hgroup>
+      </a>
+      </figure>
     </header>
-    <label for="wine-select">Choose a wine: </label>
-    <select id="wine-select" name="wine" required>
-      <option value="default" disabled selected>Select a wine...</option>
-    </select>
-    <button id="submit-winetype" type="submit">Get a recipe</button>
+
+    <section>
+      <article>
+        <h3>How It Works</h3>
+        <ul>
+          <li>Choose a wine from the dropdown.</li>
+          <li>We analyze flavor profiles using curated wine categories and the Spoonacular food API.</li>
+          <li>Get recipe suggestions that pair beautifully with your wine.</li>
+          <li>Cook, sip, and enjoy.</li>
+        </ul>
+        <p>Voilà</p>
+      </article>
+      <article>
+        <h3>About Uncork & Fork</h3>
+        <p>At Uncork & Fork, the spotlight is on the wine. Every bottle tells a story, and the food you pair it with can either enhance or dull its voice. That’s why we flip the traditional approach and let the wine choose dinner.</p>
+        <p>It’s pairing made simple, delicious, and always centered around the star of the table: your wine.</p>
+      </article>
+    </section>
+    <section>
+      <h3>
+        Wine selection
+      </h3>
+      <form id="submit-winetype">
+        <label for="wine-select">Choose your wine: </label>
+        <select id="wine-select" name="wine" required>
+          <option value="" disabled selected>Select a wine...</option>
+        </select>
+        <!--  FIX LATER: do not allow submit without choosing an option - VALIDATION -->
+        <button type="submit">Pair my wine</button>
+      </form>
+    </section>
+    <section id="recipe-section">
+      <article>
+        
+      </article>
+    </section>
+
   </body>
 </html>
