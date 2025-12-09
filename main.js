@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
         summary.appendChild(title);
 
         details.addEventListener('toggle', async () => {
+          // Only create elements once if already open
+          if (!details.open) return;
+
           const recipeContainer = document.createElement('div');
           recipeContainer.innerHTML = '';
 
