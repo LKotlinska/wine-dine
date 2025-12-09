@@ -63,6 +63,6 @@ optgroup option {
 details{
   padding: 1em 0;
 }
-summary h4{
+summary h3{
   display: inline;
 }

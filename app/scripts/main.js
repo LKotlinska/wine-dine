@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // ---- FETCH INGREDIENTS AND STEPS
           const recipeInfo = await getRecipeInformation(recipe.id);
-          
+
           // Store recipe
           recipeCache[recipe.id] = recipeInfo;
 
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Fetch and display wine selection
   try {
-    fetch('resources/wines.json')
+    fetch('/assets/wines.json')
       .then((response) => response.json())
       .then((wines) => {
         for (let category in wines) {
