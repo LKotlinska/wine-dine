@@ -34,14 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function showRecipes() {
       // To prevent infinate on-click fetching
+      let recipeCache = {};
 
       const recipeSection = document.getElementById('recipe-section');
-      // Clear previous content
       recipeSection.innerHTML = '';
 
       recipes.forEach((recipe) => {
-        // Create details toggle
         const details = document.createElement('details');
+        // Allows only one detail open at a time
+        details.setAttribute('name', 'recipe-item');
         recipeSection.appendChild(details);
         const summary = document.createElement('summary');
         details.appendChild(summary);
@@ -50,15 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
         summary.appendChild(title);
 
         details.addEventListener('toggle', async () => {
-          // Only create elements once if already open
+          // Prevent infinite fetching when open
           if (!details.open) return;
+
+          // Store recipe to prevent infinite fetching
+          if (recipeCache[recipe.id]) return;
 
           const recipeContainer = document.createElement('div');
           recipeContainer.innerHTML = '';
 
-          // Fetch full recipes
+          // ---- FETCH INGREDIENTS AND STEPS
           const recipeInfo = await getRecipeInformation(recipe.id);
-          console.log(recipeInfo);
+          
+          // Store recipe
+          recipeCache[recipe.id] = recipeInfo;
 
           const ulContainer = document.createElement('div');
 
@@ -109,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     showRecipes();
-    dropdown.value = null;
   });
 
   // ---- Fetch and display wine selection
