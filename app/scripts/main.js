@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
           olContainer.appendChild(hSteps);
           olContainer.appendChild(ol);
 
-          const steps = recipeInfo.analyzedInstructions[0].steps;
+          const steps = recipeInfo.analyzedInstructions[recipeInfo.analyzedInstructions.length - 1].steps;
           steps.forEach((step) => {
             const li = document.createElement('li');
             li.innerText = step.step;
