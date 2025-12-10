@@ -12,9 +12,9 @@ export async function getRecipeInformation(id) {
       });
 
       const response = await fetch(recipeAPIBaseURL + id + '/information?' + recipeSearch);
-      const recipes = await response.json();
+      const recipeInfo = await response.json();
       
-      return recipes;
+      return recipeInfo;
     }
     const recipeInfo = getRecipe(id);
 
