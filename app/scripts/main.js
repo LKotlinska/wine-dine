@@ -13,17 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdown = document.getElementById('wine-select');
     const wineType = dropdown.value;
 
-    // Fetch paitings from pair_recipe.js
+    // Fetch pairings from pair_recipe.js
     const { wineInfo, recipes } = await getPairedRecipes(wineType);
 
     // ---- SHOW INFO ABOUT SELECTED WINE
     function showSelectedWine(wineType, wineInfo) {
-      const wineSelected = document.querySelector('.wine-selected');
+      const wineSelected = document.getElementById('wine-selected');
+      if (!wineSelected) return;
       // Clear previous content
       wineSelected.innerHTML = '';
       wineType = formatName(wineType);
       const wineName = document.createElement('p');
-      wineName.innerText = wineType + ', great choice!';
+      const span = document.createElement('span');
+      span.classList.add('wine-name');
+      span.innerText = wineType;
+      wineName.append(span, ', great choice!');
       wineSelected.appendChild(wineName);
 
       const wineDesc = document.createElement('p');
@@ -43,10 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const details = document.createElement('details');
         // Allows only one detail open at a time
         details.setAttribute('name', 'recipe-item');
+        details.classList.add('recipe-card')
         recipeSection.appendChild(details);
         const summary = document.createElement('summary');
         details.appendChild(summary);
-        const title = document.createElement('h3');
+        const title = document.createElement('h4');
+        title.classList.add('recipe-title')
         title.innerText = recipe.title;
         summary.appendChild(title);
 
