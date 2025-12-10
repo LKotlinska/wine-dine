@@ -1,7 +1,6 @@
 :root {
   --logo-color: #c5002b;
   --background-color: #0f0f0d;
-  --background-color-rgba: rgba(15, 15, 13, 1);
   --font-color: #f8f8f8;
   --accent-color: #2d0206;
 }
@@ -30,6 +29,11 @@ h6 {
 h3 {
   font-size: 2em;
   margin: 0;
+}
+.wine-name{
+  font-weight: 900;
+  color: var(--logo-color);
+  font-size: 1.2em;
 }
 header {
   position: relative;
@@ -104,7 +108,8 @@ section {
 }
 .about-item,
 .select-container,
-.recipe-card {
+.recipe-card,
+#wine-selected {
   width: 50%;
   padding: 2em;
   margin: 0 auto;
@@ -114,7 +119,8 @@ section {
 }
 /*  Form styles */
 #submit-winetype {
-  padding: 1.5em 2em;
+  margin-top: 0.5em;
+  padding: 1.5em;
   gap: 2.5em;
   background-color: rgba(15, 15, 13, 0.85);
   border-radius: 1.5em;
@@ -122,7 +128,7 @@ section {
 }
 #submit-winetype label,
 #submit-winetype button {
-  font-size: 1.2em;
+  font-size: 1em;
 }
 #submit-winetype label {
   margin-right: 1em;
@@ -182,6 +188,9 @@ optgroup option {
 details {
   padding: 1em 0;
 }
+details h4{
+  color: var(--font-color)
+}
 summary {
   color: var(--logo-color);
 }
@@ -207,7 +216,8 @@ footer {
   }
   .about-item,
   .select-container,
-  .recipe-card {
+  .recipe-card,
+  #wine-selected {
     width: 90%;
     padding: 1.5em;
     margin: 0 auto;
