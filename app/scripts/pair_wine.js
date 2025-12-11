@@ -16,7 +16,7 @@ export async function getPairedRecipes(wineType) {
   };
 
   // ---- GET DISH INFO FROM FOOD API
-  const getRecipe = async (query) => {
+  const getRecipeInfo = async (query) => {
     const dishSearch = new URLSearchParams({
       query,
       number: 1,
@@ -39,10 +39,10 @@ export async function getPairedRecipes(wineType) {
     await new Promise(res => setTimeout(res, 250));
 
     // Extracting results[0] out of the array which contains recipe info
-    const recipeData = await getRecipe(query);
+    const recipeData = await getRecipeInfo(query);
     const newRecipe = recipeData.results[0];
 
-    // Making sure the data is not undefined
+    // Push defined recipes
     if (newRecipe !== undefined) {
       recipes.push(newRecipe);
     }

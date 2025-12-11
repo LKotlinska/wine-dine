@@ -19,18 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- SHOW INFO ABOUT SELECTED WINE
     function showSelectedWine(wineType, wineInfo) {
       const wineSelected = document.getElementById('wine-selected');
-      if (!wineSelected) return;
-      // Clear previous content
-      wineSelected.innerHTML = '';
-      wineType = formatName(wineType);
       const wineName = document.createElement('p');
       const span = document.createElement('span');
+      const wineDesc = document.createElement('p');
+      
+      // Clear previous content
+      if (!wineSelected) return;
+      wineSelected.innerHTML = '';
+
+      wineType = formatName(wineType);
       span.classList.add('wine-name');
       span.innerText = wineType;
       wineName.append(span, ', great choice!');
       wineSelected.appendChild(wineName);
 
-      const wineDesc = document.createElement('p');
       wineDesc.innerText = wineInfo;
       wineSelected.appendChild(wineDesc);
     }
@@ -45,44 +47,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
       recipes.forEach((recipe) => {
         const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        const title = document.createElement('h4');
+
         // Allows only one detail open at a time
         details.setAttribute('name', 'recipe-item');
         details.classList.add('recipe-card')
         recipeSection.appendChild(details);
-        const summary = document.createElement('summary');
         details.appendChild(summary);
-        const title = document.createElement('h4');
         title.classList.add('recipe-title')
         title.innerText = recipe.title;
         summary.appendChild(title);
 
+        // ---- FETCH INGREDIENTS AND STEPS
         details.addEventListener('toggle', async () => {
-          // Prevent infinite fetching when open
-          if (!details.open) return;
 
-          // Store recipe to prevent infinite fetching
-          if (recipeCache[recipe.id]) return;
+          // Prevent infinite fetching when opening
+          if (!details.open || recipeCache[recipe.id]) return;
 
           const recipeContainer = document.createElement('div');
           recipeContainer.innerHTML = '';
 
-          // ---- FETCH INGREDIENTS AND STEPS
           const recipeInfo = await getRecipeInformation(recipe.id);
 
           // Store recipe
           recipeCache[recipe.id] = recipeInfo;
 
           const ulContainer = document.createElement('div');
-
           const hIngredient = document.createElement('h4');
-          hIngredient.innerText = 'Ingredients';
           const ul = document.createElement('ul');
+          const ingredients = recipeInfo.extendedIngredients;
 
+          hIngredient.innerText = 'Ingredients';
           ulContainer.appendChild(hIngredient);
           ulContainer.appendChild(ul);
 
-          const ingredients = recipeInfo.extendedIngredients;
-
+          // ---- INGREDIENT LOOP
           ingredients.forEach((ingredient) => {
             const li = document.createElement('li');
             const span = document.createElement('span');
@@ -99,15 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           const olContainer = document.createElement('div');
-
           const hSteps = document.createElement('h4');
-          hSteps.innerHTML = 'Steps';
           const ol = document.createElement('ol');
+          const steps = recipeInfo.analyzedInstructions[recipeInfo.analyzedInstructions.length - 1].steps;
+
+          hSteps.innerHTML = 'Steps';
 
           olContainer.appendChild(hSteps);
           olContainer.appendChild(ol);
-
-          const steps = recipeInfo.analyzedInstructions[recipeInfo.analyzedInstructions.length - 1].steps;
+          
+          // ---- STEPS LOOP
           steps.forEach((step) => {
             const li = document.createElement('li');
             li.innerText = step.step;
