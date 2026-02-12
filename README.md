@@ -1,4 +1,4 @@
-# Uncork & Fork - Let the Wine Choose Dinner
+# Wine&Dine - Let the Wine Choose Dinner
 Uncork & Fork is a web application that reverses the traditional food–wine pairing process. Instead of selecting a wine to match a dish, the user begins by choosing a wine, and the application provides carefully matched recipe suggestions based on real pairing guidelines and API data.
 
 The result is a simple, intuitive tool where the wine takes the lead and dinner follows naturally.
